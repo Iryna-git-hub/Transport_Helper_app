@@ -3,17 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Transportation Helper App</title>
   </head>
   <body>
     <h1>Transportation Helper App</h1>
 
-    <input id="start" placeholder="Start location" />
-    <input id="destination" placeholder="Destination" />
+    <select id="start">
+      <option value="">Select Start Location</option>
+      <option value="Helsinki">Helsinki</option>
+      <option value="Kamppi">Kamppi</option>
+      <option value="Espoo">Espoo</option>
+      <option value="Pasila">Pasila</option>
+    </select>
 
-    <button onclick="searchRoute()">Search Route</button>
+    <select id="destination">
+      <option value="">Select Destination</option>
+      <option value="Metropolia">Metropolia</option>
+      <option value="Helsinki">Helsinki</option>
+      <option value="Pasila">Pasila</option>
+      <option value="Airport">Airport</option>
+    </select>
 
-    <div id="result"></div>
+    <div id="result">
+      <button onclick="searchRoute()">Search Route</button>
+    </div>
 
     <script src="transportation.js"></script>
   </body>
