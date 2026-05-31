@@ -20,26 +20,70 @@ const routes = [
     line: "U",
     time: "30 minutes",
   },
+  {
+    start: "Helsinki",
+    destination: "Pasila",
+    transport: "Train",
+    line: "I",
+    time: "10 minutes",
+  },
+  {
+    start: "Pasila",
+    destination: "Airport",
+    transport: "Train",
+    line: "P",
+    time: "30 minutes",
+  },
 ];
 
 function searchRoute() {
-  const start = document.getElementById("start").value;
-  const destination = document.getElementById("destination").value;
+  const start = document.getElementById("start").value.trim().toLowerCase();
+
+  const destination = document
+    .getElementById("destination")
+    .value.trim()
+    .toLowerCase();
+
+  if (!start || !destination) {
+    document.getElementById("result").innerHTML =
+      "<p>Please enter both locations.</p>";
+    return;
+  }
 
   const foundRoute = routes.find(
-    (route) => route.start === start && route.destination === destination,
+    (route) =>
+      route.start.toLowerCase() === start &&
+      route.destination.toLowerCase() === destination,
   );
 
   if (foundRoute) {
     document.getElementById("result").innerHTML = `
-      <h3>Route Found</h3>
-      <p>From: ${foundRoute.start}</p>
-      <p>To: ${foundRoute.destination}</p>
-      <p>Transport: ${foundRoute.transport}</p>
-      <p>Line: ${foundRoute.line}</p>
-      <p>Time: ${foundRoute.time}</p>
+      <h3>Route Found ✅</h3>
+      <p><strong>From:</strong> ${foundRoute.start}</p>
+      <p><strong>To:</strong> ${foundRoute.destination}</p>
+      <p><strong>Transport:</strong> ${foundRoute.transport}</p>
+      <p><strong>Line:</strong> ${foundRoute.line}</p>
+      <p><strong>Time:</strong> ${foundRoute.time}</p>
+      <p><strong>Total routes available:</strong> ${routes.length}</p>
     `;
   } else {
-    document.getElementById("result").innerHTML = "<p>No route found.</p>";
+    document.getElementById("result").innerHTML = `
+      <p>❌ No route found.</p>
+      <p>Try:</p>
+      <ul>
+        <li>Helsinki → Metropolia</li>
+        <li>Kamppi → Pasila</li>
+        <li>Espoo → Helsinki</li>
+        <li>Helsinki → Pasila</li>
+        <li>Pasila → Airport</li>
+      </ul>
+    `;
   }
 }
+
+// Search when Enter key is pressed
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    searchRoute();
+  }
+});
