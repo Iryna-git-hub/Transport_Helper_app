@@ -69,14 +69,7 @@ function searchRoute() {
   } else {
     document.getElementById("result").innerHTML = `
       <p>❌ No route found.</p>
-      <p>Try:</p>
-      <ul>
-        <li>Helsinki → Metropolia</li>
-        <li>Kamppi → Pasila</li>
-        <li>Espoo → Helsinki</li>
-        <li>Helsinki → Pasila</li>
-        <li>Pasila → Airport</li>
-      </ul>
+     
     `;
   }
 }
